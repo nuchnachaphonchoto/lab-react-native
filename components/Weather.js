@@ -3,8 +3,16 @@ import { Text,ImageBackground, StyleSheet, View } from 'react-native'
 import { useState } from 'react';
 import Forecast from './Forcast';
 import { useEffect } from 'react';
+import { Background } from './Background';
 
 export default function Weather(props) {
+
+    for (let background of Background) {
+        if(background.title == props.place){
+            var img = background.img;
+        }
+    }
+
     useEffect(() => {
             console.log(`fetching data with zipCode = ${props.zipCode}`)
             if (props.zipCode) {
@@ -30,7 +38,7 @@ export default function Weather(props) {
         }) 
     return (
         <View>
-            <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
+            <ImageBackground source={img} style={styles.backdrop}>
                 <View style={styles.background}>
                     <Text style={styles.title}>{props.place}</Text>
                     <Text style={styles.text}>Zip Code is {props.zipCode}</Text>
