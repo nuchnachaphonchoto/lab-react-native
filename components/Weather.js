@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Forecast from './Forcast';
 import { useEffect } from 'react';
 import { Background } from './Background';
+import DateTime from './DateTime';
 
 export default function Weather(props) {
 
@@ -30,6 +31,8 @@ export default function Weather(props) {
                     console.warn(error);
                 });
             }
+
+
         }, [props.zipCode])
 
     const [forecastInfo, setForecastInfo] = useState({
@@ -41,9 +44,13 @@ export default function Weather(props) {
         <View>
             <ImageBackground source={img} style={styles.backdrop}>
                 <View style={styles.background}>
+                    
                     <Text style={styles.title}>{props.place}</Text>
                     <Text style={styles.text}>Zip Code is {props.zipCode}</Text>
+                    
                     <Forecast {...forecastInfo} /> 
+
+                    <DateTime />
                 </View>
             </ImageBackground>
         </View>
@@ -57,15 +64,17 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#fff',
-        fontSize: 10,
+        fontSize: 12,
         paddingBottom: 10,
         textAlign: 'center',
+        fontWeight: '300',
     },
     title: {
         color: '#fff',
-        fontSize: 40,
+        fontSize: 45,
         paddingBottom: 10,
         textAlign: 'center',
+        fontWeight: '300',
     },
     background: {
         backgroundColor:'hsla(0, 0%, 0%, 0.4);',
